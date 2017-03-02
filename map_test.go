@@ -19,6 +19,6 @@ func TestMapMerge(t *testing.T) {
 		k := strconv.Itoa(i)
 		c[k] = true
 	}
-	go MapMerge(b, a)
-	go MapMerge(c, a)
+	MapMerge(b, a)
+	MapMerge(c, a)
 }

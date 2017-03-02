@@ -58,9 +58,9 @@ func StrEnumerate(s string, sep string, reversal bool, f func(surplus string, cu
 	for !stop && surplus != "" {
 		var idx int
 		if reversal {
-			idx = strings.LastIndex(s, sep)
+			idx = strings.LastIndex(surplus, sep)
 		} else {
-			idx = strings.Index(s, sep)
+			idx = strings.Index(surplus, sep)
 		}
 		if idx < 0 {
 			f("", surplus, &stop)
@@ -79,10 +79,34 @@ func StrEnumerate(s string, sep string, reversal bool, f func(surplus string, cu
 	}
 }
 
+// StrSplitFirst return fist string item splited by sep
+func StrSplitFirst(s string, sep string) string {
+	if s == "" && sep == "" {
+		return s
+	}
+	idx := strings.Index(s, sep)
+	if idx > -1 {
+		return s[:idx]
+	}
+	return s
+}
+
+// StrSplitLast return last string item splited by sep
+func StrSplitLast(s string, sep string) string {
+	if s == "" && sep == "" {
+		return s
+	}
+	idx := strings.LastIndex(s, sep)
+	if idx > -1 {
+		return s[idx+1:]
+	}
+	return s
+}
+
 // --- Judge ---
 
-// IsEmpty return the string argument is empty or not
-func IsEmpty(s string) bool {
+// StrIsEmpty return the string argument is empty or not
+func StrIsEmpty(s string) bool {
 	return len(strings.TrimSpace(s)) == 0
 }
 
