@@ -103,6 +103,24 @@ func StrSplitLast(s string, sep string) string {
 	return s
 }
 
+// StrTrim replace all string in trims to empty string
+func StrTrim(s string, trims ...string) string {
+	for _, item := range trims {
+		s = strings.Replace(s, item, "", -1)
+	}
+	return s
+}
+
+// StrRegTrim replace all string then match regexp in trimRegs to empty string
+func StrRegTrim(s string, trimRegs ...string) string {
+	for _, item := range trimRegs {
+		if aReg, err := regexp.Compile(item); err == nil {
+			s = aReg.ReplaceAllString(s, "")
+		}
+	}
+	return s
+}
+
 // --- Judge ---
 
 // StrIsEmpty return the string argument is empty or not
