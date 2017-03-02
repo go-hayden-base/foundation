@@ -16,9 +16,12 @@ func Contains(obj interface{}, target interface{}) (bool, error) {
 				return true, nil
 			}
 		}
+		return false, nil
 	case reflect.Map:
 		if targetValue.MapIndex(reflect.ValueOf(obj)).IsValid() {
 			return true, nil
+		} else {
+			return false, nil
 		}
 	}
 	return false, errors.New("target is not a slice, array or map")
