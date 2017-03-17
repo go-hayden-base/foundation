@@ -158,3 +158,8 @@ func StrIsNumber(s string) bool {
 func StrIsHTTPURL(s string) bool {
 	return StrMatchReg(s, cRegStrHttpURL)
 }
+
+// StrIsEmail return the string argument s is email or not
+func StrIsEmail(s string) bool {
+	return regexp.MustCompile(`^\S+@(\w)+(\.\w+)+$`).MatchString(s)
+}
