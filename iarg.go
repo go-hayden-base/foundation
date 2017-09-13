@@ -15,7 +15,11 @@ const (
 
 type IArgAction int8
 
-type IArag struct {
+func IArgInput(alert string, inputer func(arg string) (IArgAction))  {
+	new(IArg).Input(alert, inputer).Run()
+}
+
+type IArg struct {
 	args []*tArgDes
 	idx  int
 }
@@ -25,7 +29,7 @@ type tArgDes struct {
 	inputer func(arg string) (IArgAction)
 }
 
-func (s *IArag) Input(alert string, inputer func(arg string) (IArgAction)) (*IArag) {
+func (s *IArg) Input(alert string, inputer func(arg string) (IArgAction)) (*IArg) {
 	if inputer == nil {
 		return s
 	}
@@ -39,7 +43,7 @@ func (s *IArag) Input(alert string, inputer func(arg string) (IArgAction)) (*IAr
 	return s
 }
 
-func (s *IArag) Run() {
+func (s *IArg) Run() {
 	if s.idx >= len(s.args) {
 		return
 	}
